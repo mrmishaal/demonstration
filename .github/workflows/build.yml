@@ -1,0 +1,20 @@
+name: build
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # PPE-001 satisfied: full 40-char commit SHA, not a movable tag
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      # PPE-003 satisfied: no curl|bash anywhere
+      - name: say hello
+        run: echo "hello from a clean workflow"
+      # PPE-002 satisfied: no untrusted context interpolated into run:
+      - name: show ref
+        run: echo "building $GITHUB_REF"

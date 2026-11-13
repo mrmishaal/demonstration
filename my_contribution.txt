@@ -1,0 +1,3 @@
+- The deps command (cmd/ppe/deps/go)
+- The GitHub Action — action.yml
+- CI + Release pipelines

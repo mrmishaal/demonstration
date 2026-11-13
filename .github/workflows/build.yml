@@ -1,0 +1,21 @@
+name: build
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # PPE-001 satisfied: full 40-char commit SHA, not a movable tag
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      # PPE-003 satisfied: no curl|bash, dependencies come from a lockfile
+      - uses: actions/setup-node@d35c59abb061a4a6fb18e82ac0862c26744d6ab5 # v5.5.0
+        with:
+          node-version: '24'
+      - run: npm ci
+      # PPE-002 satisfied: no untrusted context in run:
+      - run: npm test

